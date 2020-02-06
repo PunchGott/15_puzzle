@@ -6,6 +6,7 @@ Rectangle {
     radius: 5
 
     property string displayText: ""
+
     Text {
         id: _firstText
         anchors.centerIn: root

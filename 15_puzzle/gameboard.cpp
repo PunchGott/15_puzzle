@@ -1,6 +1,7 @@
 #include "gameboard.h"
 #include <algorithm>
 #include <random>
+#include <QDebug>
 
 namespace  {
     bool isAdjacent(const GameBoard::Position f, const GameBoard::Position s)
@@ -34,7 +35,8 @@ GameBoard::GameBoard(const size_t boardDimension,
                      QObject* parent)
     : QAbstractListModel{parent},
       m_dimension{boardDimension},
-    m_boardSize {m_dimension * m_dimension}
+    m_boardSize {m_dimension * m_dimension},
+    m_stepCount {0}
 {
     m_rawBoard.resize(m_boardSize);
     std::iota(m_rawBoard.begin(), m_rawBoard.end(), 1);
@@ -58,6 +60,8 @@ bool GameBoard::move(const int index)
         return false;
     }
     std::swap(*hiddenElementIterator, m_rawBoard.at(index));
+
+    changeStepCount();
 
     emit dataChanged(createIndex(0, 0), createIndex(m_boardSize, 0));
     return true;
@@ -100,40 +104,48 @@ bool GameBoard::isPositionValid(const size_t position) const
 bool GameBoard::isBoardValid() const
 {
     int inv {0};
-       for (size_t i {0}; i < m_boardSize; ++i) {
-           for (size_t j = 0; j < i; ++j) {
-               if (m_rawBoard[j] > m_rawBoard[i]){
+       for (size_t i {0}; i < m_boardSize; ++i)
+           for (size_t j {0}; j < i; ++j)
+               if (m_rawBoard[j] > m_rawBoard[i])
                    ++inv;
-               }
-           }
-       }
 
-       const size_t start_point = 1;
+       const size_t start_point {1};
 
-       for (size_t i = 0; i < m_boardSize; ++i) {
-           if (m_rawBoard[i] == m_boardSize){
+       for (size_t i {0}; i < m_boardSize; ++i)
+           if (m_rawBoard[i] == m_boardSize)
                inv += start_point + i / m_dimension;
-           }
-       }
 
        return (inv % 2) == 0;
 }
 
+// Conversion 1D (with index) to 2D (row, col)
 GameBoard::Position GameBoard::getRowCol(const size_t index) const
 {
-    Q_ASSERT(m_dimension > 0);
+    Q_ASSERT(index < m_boardSize);
     size_t row = index / m_dimension;
     size_t column = index % m_dimension;
 
     return std::make_pair(row, column);
 }
 
-size_t GameBoard::boardSize() const
+quint64 GameBoard::getStepCount() const
+{
+    return m_stepCount;
+}
+
+
+void GameBoard::changeStepCount()
+{
+    m_stepCount++;
+    emit stepCountChanged();
+}
+
+size_t GameBoard::getBoardSize() const
 {
     return m_boardSize;
 }
 
-size_t GameBoard::dimension() const
+size_t GameBoard::getDimension() const
 {
     return m_dimension;
 }

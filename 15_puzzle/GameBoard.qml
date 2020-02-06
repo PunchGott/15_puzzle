@@ -3,12 +3,10 @@ import Game 1.0
 
 GridView {
     id: root
-    model: GameBoardModel {
-
-    }
 
     cellHeight: height / root.model.dimension
     cellWidth: width / root.model.dimension
+
 
     delegate: Item {
         id: _backgroundDelegate

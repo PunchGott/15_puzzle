@@ -7,8 +7,9 @@
 class GameBoard : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(int dimension READ dimension CONSTANT)
-    Q_PROPERTY(int hiddenElementValue READ boardSize CONSTANT)
+    Q_PROPERTY(int dimension READ getDimension CONSTANT)
+    Q_PROPERTY(int hiddenElementValue READ getBoardSize CONSTANT)
+    Q_PROPERTY(quint64 stepCount READ getStepCount NOTIFY stepCountChanged)
 public:
     using tile_type = size_t;
     using Position = std::pair<size_t, size_t>;
@@ -16,13 +17,20 @@ public:
     GameBoard(const size_t boardDimension = defaultPuzzleDimension,
               QObject* parent = nullptr);
 
-    Q_INVOKABLE bool move(int index);
-    size_t dimension() const;
-    size_t boardSize() const;
+    Q_INVOKABLE bool move(const int index);
+
+    size_t getDimension() const;
+    size_t getBoardSize() const;
+
+    quint64 getStepCount() const;
+    void changeStepCount();
 
     int rowCount(const QModelIndex& index = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
+
+signals:
+    void stepCountChanged();
 
 private:
     void shuffle();
@@ -34,6 +42,7 @@ private:
     std::vector<tile_type> m_rawBoard;
     size_t m_dimension;
     size_t m_boardSize;
+    quint64 m_stepCount;
 };
 
 #endif // GAMEBOARD_H
