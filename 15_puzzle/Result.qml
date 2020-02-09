@@ -5,13 +5,20 @@ Rectangle {
 
     property string displayStepCount
 
+    Style {
+        id: _style
+    }
+
+    color: _style.backgroundColor
+
     Text {
-        color: "#34a3f4"
-        text: root.displayStepCount
         anchors.centerIn: root
+        text: root.displayStepCount
+        color: _style.textColor
         font {
-            family: "Impact"
-            pointSize: 10
+            family: "Verdana"
+            bold: true
+            pointSize: 14
         }
     }
 

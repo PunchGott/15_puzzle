@@ -40,7 +40,7 @@ GameBoard::GameBoard(const size_t boardDimension,
 {
     m_rawBoard.resize(m_boardSize);
     std::iota(m_rawBoard.begin(), m_rawBoard.end(), 1);
-    shuffle();
+//    shuffle();
 }
 
 bool GameBoard::move(const int index)
@@ -65,6 +65,22 @@ bool GameBoard::move(const int index)
 
     emit dataChanged(createIndex(0, 0), createIndex(m_boardSize, 0));
     return true;
+}
+
+bool GameBoard::isWin() const
+{
+    if(std::is_sorted(m_rawBoard.begin(), m_rawBoard.end()))
+        return true;
+    else
+        return false;
+}
+
+void GameBoard::resetTheGame()
+{
+    m_stepCount = 0;
+    shuffle();
+    emit stepCountChanged();
+    emit dataChanged(createIndex(0, 0), createIndex(m_boardSize, 0));
 }
 
 int GameBoard::rowCount(const QModelIndex &index) const
@@ -94,6 +110,7 @@ void GameBoard::shuffle()
         }
         while (!isBoardValid());
 
+        emit dataChanged(createIndex(0, 0), createIndex(m_boardSize, 0));
 }
 
 bool GameBoard::isPositionValid(const size_t position) const

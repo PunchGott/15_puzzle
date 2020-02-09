@@ -18,6 +18,8 @@ public:
               QObject* parent = nullptr);
 
     Q_INVOKABLE bool move(const int index);
+    Q_INVOKABLE bool isWin() const;
+    Q_INVOKABLE void resetTheGame();
 
     size_t getDimension() const;
     size_t getBoardSize() const;

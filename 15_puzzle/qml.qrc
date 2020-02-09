@@ -4,5 +4,6 @@
         <file>Tile.qml</file>
         <file>GameBoard.qml</file>
         <file>Result.qml</file>
+        <file>Style.qml</file>
     </qresource>
 </RCC>
