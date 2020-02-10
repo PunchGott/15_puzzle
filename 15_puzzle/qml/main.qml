@@ -16,7 +16,7 @@ Window {
         id: _style
     }
 
-    property var gm: GameBoardModel {
+    property var gameBoardModel: GameBoardModel {
         id: gameBoardModel
         onStepCountChanged: isWin() ? winDialog.visible = true : winDialog.visible = false
     }

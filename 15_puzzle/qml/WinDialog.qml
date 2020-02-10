@@ -27,7 +27,7 @@ Dialog {
                 text: qsTr("Reset the game")
                 onClicked: {
                     winDialog.close();
-                    gm.resetTheGame();
+                    gameBoardModel.resetTheGame();
                 }
             }
             Button {
