@@ -97,7 +97,7 @@ QVariant GameBoard::data(const QModelIndex &index, int role) const
     if (!isPositionValid(index.row())) {
            return QVariant{};
        }
-    return QVariant(m_rawBoard.at(index.row()));
+    return QVariant((unsigned long long)m_rawBoard.at(index.row()));
 }
 
 void GameBoard::shuffle()

@@ -16,7 +16,7 @@ Window {
         id: _style
     }
 
-    GameBoardModel {
+    property var gm: GameBoardModel {
         id: gameBoardModel
         onStepCountChanged: isWin() ? winDialog.visible = true : winDialog.visible = false
     }
@@ -36,42 +36,7 @@ Window {
         height: parent.height - result.height
     }
 
-    Dialog {
+    WinDialog {
         id: winDialog
-        contentItem: Rectangle {
-            color: root.color
-            Column {
-                anchors.centerIn: parent
-                spacing: 20
-                Text {
-                    text: qsTr("You win!")
-                    color:  _style.textColor
-                    font {
-                        family: "Arial Black"
-                        bold: true
-                        pointSize: 14
-                    }
-                }
-                Button {
-                    id: resetTheGame
-                    text: qsTr("Reset the game")
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            winDialog.close();
-                            gameBoardModel.resetTheGame();
-                        }
-                    }
-                }
-                Button {
-                    id: exitTheGame
-                    text: qsTr("Exit the game")
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: Qt.quit()
-                    }
-                }
-            }
-        }
     }
 }
