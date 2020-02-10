@@ -35,7 +35,7 @@ Window {
         width: parent.width
         height: parent.height - result.height
     }
-
+// check git
     WinDialog {
         id: winDialog
     }
