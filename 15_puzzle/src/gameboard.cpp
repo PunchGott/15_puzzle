@@ -115,7 +115,7 @@ void GameBoard::shuffle()
 
 bool GameBoard::isPositionValid(const size_t position) const
 {
-    return position < m_boardSize && position >= 0;
+    return position < m_boardSize;
 }
 
 bool GameBoard::isBoardValid() const
