@@ -6,5 +6,6 @@
         <file>Result.qml</file>
         <file>WinDialog.qml</file>
         <file>Style.qml</file>
+        <file>StopWatch.qml</file>
     </qresource>
 </RCC>

@@ -21,6 +21,19 @@ Window {
         onStepCountChanged: isWin() ? winDialog.visible = true : winDialog.visible = false
     }
 
+    StopWatch{
+            id: _timeLabel
+            anchors {
+                left: parent.left
+                top: parent.top
+                margins: 10
+                leftMargin: 10
+            }
+            font {
+                pointSize: parent.height / 4 * 0.15;
+                bold: true
+            }
+        }
 
     Result {
         id: result

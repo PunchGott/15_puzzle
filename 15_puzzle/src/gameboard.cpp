@@ -38,6 +38,7 @@ GameBoard::GameBoard(const size_t boardDimension,
     m_boardSize {m_dimension * m_dimension},
     m_stepCount {0}
 {
+
     m_rawBoard.resize(m_boardSize);
     std::iota(m_rawBoard.begin(), m_rawBoard.end(), 1);
 //    shuffle();
@@ -149,7 +150,6 @@ quint64 GameBoard::getStepCount() const
 {
     return m_stepCount;
 }
-
 
 void GameBoard::changeStepCount()
 {

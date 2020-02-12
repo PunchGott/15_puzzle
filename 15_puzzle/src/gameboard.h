@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QVector>
+#include <QTime>
 
 class GameBoard : public QAbstractListModel
 {
@@ -23,12 +24,12 @@ public:
 
     size_t getDimension() const;
     size_t getBoardSize() const;
-
     quint64 getStepCount() const;
-    void changeStepCount();
+
 
     int rowCount(const QModelIndex& index = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+
 
 
 signals:
@@ -38,6 +39,7 @@ private:
     void shuffle();
     bool isPositionValid(const size_t position) const;
     bool isBoardValid() const;
+    void changeStepCount();
 
     Position getRowCol(size_t index) const;
 
