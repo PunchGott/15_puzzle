@@ -1,0 +1,2 @@
+module Win
+WinDialog 1.0 WinDialog.qml

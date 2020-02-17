@@ -1,0 +1,4 @@
+module InfoElements
+StepCount 1.0 StepCount.qml
+StopWatch 1.0 StopWatch.qml
+InfoPanel 1.0 InfoPanel.qml

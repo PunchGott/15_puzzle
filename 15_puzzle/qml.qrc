@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qml/Style/qmldir</file>
+        <file>qml/Style/Style.qml</file>
+        <file>qml/GameBoard/GameBoard.qml</file>
+        <file>qml/GameBoard/qmldir</file>
+        <file>qml/GameBoard/Tile.qml</file>
+        <file>qml/InfoElements/qmldir</file>
+        <file>qml/InfoElements/StepCount.qml</file>
+        <file>qml/InfoElements/StopWatch.qml</file>
+        <file>qml/Win/qmldir</file>
+        <file>qml/Win/WinDialog.qml</file>
+        <file>qml/InfoElements/InfoPanel.qml</file>
+    </qresource>
+</RCC>
