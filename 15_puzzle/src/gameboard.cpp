@@ -41,7 +41,7 @@ GameBoard::GameBoard(const size_t boardDimension,
 
     m_rawBoard.resize(m_boardSize);
     std::iota(m_rawBoard.begin(), m_rawBoard.end(), 1);
-//    shuffle();
+    shuffle();
 }
 
 bool GameBoard::move(const int index)

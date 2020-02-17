@@ -15,15 +15,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         src/gameboard.cpp \
-        src/main.cpp
+        main.cpp
 
-RESOURCES += qml/qml.qrc
+RESOURCES += qml.qrc\
+    qml.qrc
 
-TRANSLATIONS += \
-    settings/15_puzzle_ru_RU.ts
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH = $$PWD/qml
+QML2_IMPORT_PATH = $$PWD/qml
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
